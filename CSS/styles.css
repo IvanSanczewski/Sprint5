@@ -70,11 +70,17 @@ h1 {
     margin: 4em;
     
     max-width: 80%;
+    min-height: 3em;
 
     color: #025534;
     
     font-size: larger;
     font-weight: 600;
+}
+
+.score {
+    background-color: #025534;
+    min-height: 3em;
 }
 
 .main-button {
