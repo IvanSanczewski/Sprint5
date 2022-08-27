@@ -8,8 +8,11 @@ body {
     height: 100vh;
 
 
-    background-color: #038767;
-    background-image: linear-gradient(135deg, #00c190 32%, #4667f8 100%);
+    /* background-color: #038767; */
+    background-image: url('../MEDIA/CHIQUITO.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
 
     color: aqua;
 
@@ -18,6 +21,8 @@ body {
     justify-content: center;
     align-items: center;
 
+
+
 }
 
 .page {
@@ -25,7 +30,8 @@ body {
     flex-flow: column wrap;
     align-items: center;
 
-    padding: 9em 6em;
+    max-width: 50%;
+    padding: 4em 2em;
     
     position: relative;
 }
@@ -40,11 +46,10 @@ body {
     left: 0px;
     
     background-color: white;
-    background-image: url('../MEDIA/ISP_STREET_HAPPENS_22000_edit.jpg');
     background-size: cover ;
     background-position: bottom center;
     border-radius: 1em;    
-    opacity: 0.85;
+    opacity: 0.9;
 
 
 }
@@ -62,8 +67,10 @@ h1 {
 #joke {
     position: relative; 
     text-align: center;
-    margin: 4em 10em;
+    margin: 4em;
     
+    max-width: 80%;
+
     color: #025534;
     
     font-size: larger;
@@ -88,5 +95,5 @@ h1 {
 
 .main-button:hover {
     background-color: #0b27a2 ;
-    color: #1facad;
+    color: white;
 }
