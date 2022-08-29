@@ -1,4 +1,5 @@
 "use strict";
+// import {Score} from './scores'
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -12,8 +13,18 @@ const API_URL_DAD_JOKES = 'https://icanhazdadjoke.com/';
 const showJoke = document.querySelector('#joke');
 let newJokeDiv = "";
 let newJoke = "";
+let allScoredJokes = [];
+// create a class to instance every rated joke
+class Score {
+    constructor(currentJoke, score, date) {
+        this.currentJoke = currentJoke;
+        this.score = score;
+        this.date = date;
+    }
+}
 // delete DOM element in order to delete previous joke shown
 function deletePreviousJoke() {
+    // if statement in order to avoid console error of first try of deletion
     showJoke.removeChild(newJoke);
 }
 // request data from API asyncronously with a function
@@ -33,4 +44,13 @@ function loadJoke() {
         // append div node in parent DOM node created in HTML
         showJoke.appendChild(newJoke);
     });
+}
+function getScore(jokeScore) {
+    let allowRating = true;
+    if (allowRating) {
+        let currentJoke = document.querySelector('#joke');
+        const scoredJoke = new Score(currentJoke.innerHTML, jokeScore, new Date);
+        allScoredJokes.push(scoredJoke);
+    }
+    console.log(allScoredJokes);
 }
