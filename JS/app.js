@@ -24,11 +24,11 @@ class Score {
 }
 // delete DOM element in order to delete previous joke shown
 function deletePreviousJoke() {
-    // if statement in order to avoid console error of first try of deletion
+    // ??create an if statement in order to avoid console error of first try of deletion
     showJoke.removeChild(newJoke);
 }
 // request data from API asyncronously with a function
-function loadJoke() {
+function loadDadJoke() {
     return __awaiter(this, void 0, void 0, function* () {
         const apiRequest = yield fetch(`${API_URL_DAD_JOKES}`, {
             headers: {
@@ -44,6 +44,22 @@ function loadJoke() {
         // append div node in parent DOM node created in HTML
         showJoke.appendChild(newJoke);
     });
+}
+// function loadShape () {
+//     let randomShape: number = Math.floor(Math.random() * (6 - 1) + 1);
+//     //implementar switch para escoger forma
+// }
+// randomly generate a number (1 or 2) and call either loadDadJoke() or loadCNJoke() functions
+function chooseJoke() {
+    let randomJoke = Math.floor(Math.random() * (3 - 1) + 1);
+    console.log(randomJoke);
+    if (randomJoke === 1) {
+        loadDadJoke();
+    }
+    else {
+        loadCNJoke();
+    }
+    // loadShape();
 }
 function getScore(jokeScore) {
     let allowRating = true;

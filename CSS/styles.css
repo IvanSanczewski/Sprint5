@@ -21,15 +21,13 @@ body {
 }
 
 .weather {
-    align-self: center;
-    width: 60%;
-    margin-top: 2em;
-
-    text-align: end;
+    margin: 1em;
+    
+    align-self: flex-start;
 
     font-size: large;
     font-weight: 900;
-    color:#025534;
+    color: rgb(29, 29, 29)
 }
 
 /* .weather-container {
