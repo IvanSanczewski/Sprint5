@@ -13,7 +13,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const API_URL_WEATHER_VILNIUS = 'https://api.openweathermap.org/data/2.5/weather?lat=54.687157&lon=25.279652&units=metric&appid=e17c07313af0930b505c798498867fc8';
-const showWeather = document.querySelector('#weather-icon');
+const showWeather = document.querySelector('#weather');
 const showTemp = document.querySelector('#temp');
 function loadWeather() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -24,23 +24,17 @@ function loadWeather() {
         });
         // parse data
         const openWeatherMapData = yield openWeatherMapRequest.json();
-        console.log(openWeatherMapData);
-        // create variable for icons
-        let weatherIconStart = 'https://openweathermap.org/img/wn/';
-        let weatherIconEnd = '@2x.png';
-        let weatherIcon = `${weatherIconStart}${openWeatherMapData.weather[0].icon}${weatherIconEnd}`;
-        console.log(weatherIcon);
-        // create a new div node in DOM 
-        const actualWeather = document.createElement('div');
-        // const actualWeatherIcon: any = actualWeather.appendChild(document.);
-        // const actualWeatherIcon: Text = actualWeather.appendChild(document.createTextNode(`https://openweathermap.org/img/wn/${openWeatherMapData.weather[0].icon}@2x.png`));
-        // let MOREFAKER: any = document.createElement('div');
-        // const FAKE:any = MOREFAKER.appendChild(document.URL(`https://openweathermap.org/img/wn/${openWeatherMapData.weather[0].icon}@2x.png`))
-        // create text node and append it to HTML element DOM node
-        // const actualWeather = document.createTextNode(`${weatherIcon}`);
-        // actualWeather.appendChild(weatherIcon);
-        // const actualWeather = document.createElement(`${weatherIcon}`);
-        // showWeather.appendChild(actualWeatherIcon); 
+        // create 3 variables for icons <<-- a bit more clear to read than the used option in line 25 in TS file
+        // let weatherIconStart:string = 'https://openweathermap.org/img/wn/'
+        // let weatherIconEnd:string = '@2x.png'
+        // let weatherIcon:string = `${weatherIconStart}${openWeatherMapData.weather[0].icon}${weatherIconEnd}`
+        // variable containing the weather icon URL
+        let weatherIcon = `https://openweathermap.org/img/wn/${openWeatherMapData.weather[0].icon}@2x.png`;
+        // inserting URL into the src attribute
+        const actualWeatherImage = document.getElementById('weather-icon');
+        if (actualWeatherImage !== null) {
+            actualWeatherImage.src = weatherIcon;
+        }
         // create text node for the temperature and append it to HTML element DOM node
         const actualTemp = document.createTextNode(`${(openWeatherMapData.main.temp).toFixed(0)}`);
         showTemp.appendChild(actualTemp);
