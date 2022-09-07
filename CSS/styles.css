@@ -46,7 +46,7 @@ body {
     flex-flow: column wrap;
     align-items: center;
 
-    max-width: 50%;
+    width: 50%;
     padding: 4em 2em;
     
     background-color: white;
@@ -57,6 +57,19 @@ body {
 
     position: relative;
 }
+
+h1 {
+    max-width: 80%;
+
+    position: relative; 
+    text-align: center;
+    
+    font-size: 2.5em;
+    background: -webkit-linear-gradient(135deg, #025534 39%, #2245e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 
 /* .joke-container::before {
     content: '';
@@ -71,16 +84,6 @@ body {
     background-position: bottom center;
   
 } */
-
-h1 {
-    position: relative; 
-    text-align: center;
-    
-    font-size: 2.5em;
-    background: -webkit-linear-gradient(135deg, #025534 39%, #2245e0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
 
 .joke {
     position: relative; 
