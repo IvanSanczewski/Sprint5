@@ -7,80 +7,86 @@
 body {
     height: 100vh;
 
-    background-image: url('../MEDIA/CHIQUITO.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
-
-    /* color: aqua; */
+    /* width: auto;
+    background-image: url(/MEDIA/blue_blob.svg);
+    background-size: 100px 600px;
+    background-repeat: no-repeat; */
 
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
+
+    position: relative;
 }
+
+.shape {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: inherit ;
+    overflow: hidden;
+}
+
 
 .weather {
-    margin: 1em;
+    margin: 1em 1em 1em 2em;
     
-    align-self: flex-start;
+    position: absolute;
+    top: .5em;
+    left: -1.5em;
+    /* align-self: flex-start; */
 
-    font-size: large;
+    font-size:x-large ;
     font-weight: 900;
-    color: rgb(29, 29, 29)
+    color: rgb(29, 29, 29);
+
+    /* flex-flow: row nowrap; */
+    display: flex;
+    align-items: center;
+
 }
 
-/* .weather-container {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-end;
+.weather>img {
+    width: 50%;
+}
 
-    font-size: medium;
-    color:#025534;
-} */
+.vl {
+    border-left: 3px solid rgb(29, 29, 29);
+    height: 2em;
+    border-radius: 5px;
+    margin-right: .8em;
+    margin-left: .3em;
+}
 
 .joke-container {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
 
-    width: 50%;
-    padding: 4em 2em;
-    
-    background-color: white;
-    opacity: .91;
-    border-radius: 1em;  
-
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-
     position: relative;
+
+    color: whitesmoke;
 }
 
 h1 {
-    max-width: 80%;
+    /* max-width: 80%;  */
 
     position: relative; 
     text-align: center;
     
     font-size: 2.5em;
+}
+
+/* 
+TEXTO CON GRADIENTE --> el gradiente está en el background y hay que hacer una máscara (clip) al texto para luego darle un relleno (fill) transparente
+h1 {
     background: -webkit-linear-gradient(135deg, #025534 39%, #2245e0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-
-/* .joke-container::before {
-    content: '';
-    
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    
-    background-size: cover ;
-    background-position: bottom center;
-  
 } */
 
 .joke {
@@ -90,8 +96,6 @@ h1 {
 
     max-width: 80%;
     min-height: 3em;
-    
-    color: #025534;
     
     font-size: larger;
     font-weight: 600;
@@ -107,18 +111,19 @@ h1 {
     min-height: 5em;
     /* padding: 1em 2em; */
     
-    color: #025534;
+    /* color: #025534; */
     /* font-size:xx-large; */
     
 }
 
 .icon-btn {
     border: none;
+    color: whitesmoke;
     background-color: transparent;
     cursor: pointer;
 }
 
-.score > .icon-btn:nth-child(1) {
+/* .score > .icon-btn:nth-child(1) {
     color: #025534;
 }
 
@@ -128,18 +133,20 @@ h1 {
 
 .score > .icon-btn:nth-last-child(1) {
     color: #0b27a2;
-}
+} */
 
 .joke-btn {
     position: relative; 
     background-color: transparent ;
-    color: #0b27a2;
+    /* color: #0b27a2; */
+    color: whitesmoke;
 
     font-size: 2em;
     padding: .2em 1em;
 
     border-style:solid;
-    border-color: #0b27a2;
+    /* border-color: #0b27a2; */
+    border-color: whitesmoke;
     border-width: .15em;
     border-radius: .3em;
 
@@ -147,6 +154,9 @@ h1 {
 }
 
 .joke-btn:hover {
-    background-color: #0b27a2 ;
-    color: white;
+    background-color: whitesmoke;
+    /* background-color: #0b27a2 ; */
+    color: rgb(14, 141, 124);
 }
+
+
