@@ -9,12 +9,13 @@
     <script src="https://kit.fontawesome.com/b309c4aaae.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <img class="shape" src="./MEDIA/blue_blob.svg" alt="coloured shape">
     <div class="weather" id="weather">
-        <img id="weather-icon" src="" alt="weather icon"> | <span id="temp"></span> °C
+        <img id="weather-icon" src="" alt="weather icon"><span class="vl"></span><p><span id="temp"></span>°C</p>
     </div>
 
     <div class="joke-container">
-        <h1>Start YOUR working day with a smile :)</h1>
+        <h1>Start the day smiling :)</h1>
         <div class="joke" id="joke"></div>
         <div class="score">
             <button class="icon-btn"><i class="fa-solid fa-face-frown fa-3x" onclick="getScore(1)"></i></button>
@@ -22,8 +23,7 @@
             <button class="icon-btn"><i class="fa-solid fa-face-grimace fa-3x" onclick="getScore(3)"></i></button>
         </div>
         <div class="btn-container">
-            <button class="joke-btn" id="jokeBtn" onclick="chooseJoke(), deletePreviousJoke()">MAKE ME LAUGH!</button>
-            <!-- <button class="joke-btn" id="jokeBtn" onclick="chooseJoke(), deletePreviousJoke()">MAKE ME LAUGH!</button> -->
+            <button class="joke-btn" id="jokeBtn" onclick="trigger(), deletePreviousJoke()">MAKE ME LAUGH!</button>
         </div>
     </div>
 
