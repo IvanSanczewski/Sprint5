@@ -18,8 +18,10 @@ function loadCNJoke() {
         });
         // parse data
         const apiCNData = yield apiCNRequest.json();
+        // create a new div node in DOM 
+        newJokeDiv = document.createElement('div');
         // create text node and append it to HTML element DOM node
-        const newCNJoke = document.createTextNode(`${apiCNData.value}`);
-        showJoke.appendChild(newCNJoke);
+        newJoke = document.createTextNode(`${apiCNData.value}`);
+        showJoke.appendChild(newJoke);
     });
 }

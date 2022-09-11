@@ -45,10 +45,38 @@ function loadDadJoke() {
         showJoke.appendChild(newJoke);
     });
 }
-// function loadShape () {
-//     let randomShape: number = Math.floor(Math.random() * (6 - 1) + 1);
-//     //implementar switch para escoger forma
-// }
+function loadShape() {
+    const acutalShape = document.querySelector('.shape');
+    let randomShape = Math.floor(Math.random() * (6 - 1) + 1);
+    //implementar switch para escoger forma
+    switch (randomShape) {
+        case 1:
+            if (acutalShape !== null) {
+                acutalShape.src = './MEDIA/blue_blob.svg';
+            }
+            break;
+        case 2:
+            if (acutalShape !== null) {
+                acutalShape.src = './MEDIA/dark_yellow_blob.svg';
+            }
+            break;
+        case 3:
+            if (acutalShape !== null) {
+                acutalShape.src = './MEDIA/fuchsia_blob.svg';
+            }
+            break;
+        case 4:
+            if (acutalShape !== null) {
+                acutalShape.src = './MEDIA/green_blob.svg';
+            }
+            break;
+        case 5:
+            if (acutalShape !== null) {
+                acutalShape.src = './MEDIA/medium_gray_blob.svg';
+            }
+            break;
+    }
+}
 // randomly generate a number (1 or 2) and call either loadDadJoke() or loadCNJoke() functions
 function chooseJoke() {
     let randomJoke = Math.floor(Math.random() * (3 - 1) + 1);
@@ -59,7 +87,13 @@ function chooseJoke() {
     else {
         loadCNJoke();
     }
-    // loadShape();
+    loadShape();
+}
+function trigger() {
+    // implementar condicional para que no intente borrar al principio -->> según contenido del div
+    chooseJoke();
+    loadShape();
+    deletePreviousJoke();
 }
 function getScore(jokeScore) {
     let allowRating = true;

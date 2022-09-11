@@ -25,13 +25,13 @@ class Score {
 
 // delete DOM element in order to delete previous joke shown
 function deletePreviousJoke(): void {
-    // if statement in order to avoid console error of first try of deletion
+    // ??create an if statement in order to avoid console error of first try of deletion
     showJoke.removeChild(newJoke);
 }
 
 
 // request data from API asyncronously with a function
-async function loadJoke() {
+async function loadDadJoke() {
     const apiRequest = await fetch(`${API_URL_DAD_JOKES}`, {
         headers: {
             Accept: "application/json",
@@ -50,13 +50,68 @@ async function loadJoke() {
     showJoke.appendChild(newJoke);
 }    
 
+function loadShape () {
+    const acutalShape = document.querySelector('.shape') as HTMLImageElement | null;
+    let randomShape: number = Math.floor(Math.random() * (6 - 1) + 1);
+    //implementar switch para escoger forma
+    switch (randomShape) {
+        case 1: 
+            if(acutalShape !== null){
+                acutalShape.src = './MEDIA/blue_blob.svg'
+            }
+            break;
+        case 2: 
+            if(acutalShape !== null){
+                acutalShape.src = './MEDIA/dark_yellow_blob.svg'
+            }
+            break;
+        case 3: 
+            if(acutalShape !== null){
+                acutalShape.src = './MEDIA/fuchsia_blob.svg'
+            }
+            break;
+        case 4: 
+            if(acutalShape !== null){
+                acutalShape.src = './MEDIA/green_blob.svg'
+            }
+            break;
+        case 5: 
+            if(acutalShape !== null){
+                acutalShape.src = './MEDIA/medium_gray_blob.svg'
+            }
+            break;
+    }
+}
+
+
+
+
+
+// randomly generate a number (1 or 2) and call either loadDadJoke() or loadCNJoke() functions
+function chooseJoke() {
+    let randomJoke: number = Math.floor(Math.random() * (3 - 1) + 1);
+    console.log(randomJoke);
+    if(randomJoke === 1) {
+        loadDadJoke();
+    } else {
+        loadCNJoke();
+    }
+    loadShape();
+} 
+
+
+function trigger() {
+    // implementar condicional para que no intente borrar al principio -->> según contenido del div
+    chooseJoke();
+    loadShape();
+    deletePreviousJoke();
+} 
+
 
 
 function getScore(jokeScore: number) {
     let allowRating: boolean = true;
 
-
-    
     if (allowRating) {
         let currentJoke = document.querySelector('#joke') as HTMLDivElement;    
         const scoredJoke: object = new Score (currentJoke.innerHTML, jokeScore , new Date);
