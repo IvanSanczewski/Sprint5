@@ -38,16 +38,13 @@ body {
     position: absolute;
     top: .5em;
     left: -1.5em;
-    /* align-self: flex-start; */
 
     font-size:x-large ;
     font-weight: 900;
     color: rgb(29, 29, 29);
 
-    /* flex-flow: row nowrap; */
     display: flex;
     align-items: center;
-
 }
 
 .weather>img {
@@ -63,6 +60,8 @@ body {
 }
 
 .joke-container {
+    width: 50%;
+
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -107,7 +106,7 @@ h1 {
     justify-content: space-evenly ;
     align-items: center ;
     
-    width: 50%;
+    width: 40%;
     min-height: 5em;
     /* padding: 1em 2em; */
     
@@ -119,33 +118,33 @@ h1 {
 .icon-btn {
     border: none;
     color: whitesmoke;
+    /* implementar color complementario al svg */
     background-color: transparent;
     cursor: pointer;
 }
 
-/* .score > .icon-btn:nth-child(1) {
-    color: #025534;
-}
+/* implementar color complementario al svg */
+        /* .score > .icon-btn:nth-child(1) {
+            color: #025534;
+        }
 
-.score > .icon-btn:nth-child(2) {
-    color: #225472;
-}
+        .score > .icon-btn:nth-child(2) {
+            color: #225472;
+        }
 
-.score > .icon-btn:nth-last-child(1) {
-    color: #0b27a2;
-} */
+        .score > .icon-btn:nth-last-child(1) {
+            color: #0b27a2;
+        } */
 
 .joke-btn {
     position: relative; 
     background-color: transparent ;
-    /* color: #0b27a2; */
     color: whitesmoke;
 
     font-size: 2em;
     padding: .2em 1em;
 
     border-style:solid;
-    /* border-color: #0b27a2; */
     border-color: whitesmoke;
     border-width: .15em;
     border-radius: .3em;
@@ -155,8 +154,9 @@ h1 {
 
 .joke-btn:hover {
     background-color: whitesmoke;
-    /* background-color: #0b27a2 ; */
-    color: rgb(14, 141, 124);
+
+    /* implementar color complementario al svg */
+    color: black;
 }
 
 

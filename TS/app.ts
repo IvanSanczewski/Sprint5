@@ -96,7 +96,6 @@ function chooseJoke() {
     } else {
         loadCNJoke();
     }
-    loadShape();
 } 
 
 
