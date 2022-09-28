@@ -10,9 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const API_URL_DAD_JOKES = 'https://icanhazdadjoke.com/';
-const showJoke = document.querySelector('#joke');
-let newJokeDiv = "";
+// const showJoke:any = document.querySelector('#joke');
+// let newJokeDiv: any = "";
 let newJoke = "";
+let jokeDiv = "";
 let allScoredJokes = [];
 // create a class to instance every rated joke
 class Score {
@@ -22,13 +23,15 @@ class Score {
         this.date = date;
     }
 }
-// delete DOM element in order to delete previous joke shown
+// // delete DOM element in order to delete previous joke shown
 function deletePreviousJoke() {
-    // ??create an if statement in order to avoid console error of first try of deletion
-    showJoke.removeChild(newJoke);
+    // ??create an if statement in order to avoid console error of first try of deletion    
+    jokeDiv.removeChild(newJoke);
+    // list.removeChild(list.lastElementChild)
 }
 // request data from API asyncronously with a function
 function loadDadJoke() {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const apiRequest = yield fetch(`${API_URL_DAD_JOKES}`, {
             headers: {
@@ -37,12 +40,8 @@ function loadDadJoke() {
         });
         // parse data
         const apiData = yield apiRequest.json();
-        // create a new div node in DOM 
-        newJokeDiv = document.createElement('div');
-        // create text node and append it to previous div node
-        newJoke = newJokeDiv.appendChild(document.createTextNode(`${apiData.joke}`));
-        // append div node in parent DOM node created in HTML
-        showJoke.appendChild(newJoke);
+        jokeDiv = `<div style="color: black">${apiData.joke}</div>`;
+        newJoke = (_a = document.querySelector('#joke')) === null || _a === void 0 ? void 0 : _a.insertAdjacentHTML('afterbegin', jokeDiv);
     });
 }
 function loadShape() {
@@ -87,7 +86,6 @@ function chooseJoke() {
     else {
         loadCNJoke();
     }
-    loadShape();
 }
 function trigger() {
     // implementar condicional para que no intente borrar al principio -->> según contenido del div
@@ -104,3 +102,6 @@ function getScore(jokeScore) {
     }
     console.log(allScoredJokes);
 }
+// const triggerBtn: HTMLButtonElement | null = document.querySelector('jokeBtn')
+const triggerBtn = document.querySelector('#jokeBtn');
+triggerBtn.addEventListener('click', trigger);

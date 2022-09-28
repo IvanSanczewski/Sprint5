@@ -3,10 +3,12 @@
 const API_URL_DAD_JOKES:string = 'https://icanhazdadjoke.com/';
 
 
-const showJoke:any = document.querySelector('#joke');
+// const showJoke:any = document.querySelector('#joke');
 
-let newJokeDiv: any = "";
+// let newJokeDiv: any = "";
 let newJoke: any = "";
+let jokeDiv: any = "";
+
 
 let allScoredJokes: {}[] = [];
 
@@ -23,15 +25,17 @@ class Score {
 }
 
 
-// delete DOM element in order to delete previous joke shown
+// // delete DOM element in order to delete previous joke shown
 function deletePreviousJoke(): void {
-    // ??create an if statement in order to avoid console error of first try of deletion
-    showJoke.removeChild(newJoke);
+    // ??create an if statement in order to avoid console error of first try of deletion    
+    jokeDiv.removeChild(newJoke);
+    // list.removeChild(list.lastElementChild)
 }
 
 
 // request data from API asyncronously with a function
 async function loadDadJoke() {
+
     const apiRequest = await fetch(`${API_URL_DAD_JOKES}`, {
         headers: {
             Accept: "application/json",
@@ -39,43 +43,45 @@ async function loadDadJoke() {
     });
     // parse data
     const apiData = await apiRequest.json();
+    jokeDiv = `<div style="color: black">${apiData.joke}</div>`
+    newJoke = document.querySelector('#joke')?.insertAdjacentHTML('afterbegin', jokeDiv);
 
-    // create a new div node in DOM 
-    newJokeDiv = document.createElement('div');
+    // create a new div node in DOM
+    // newJokeDiv = document.createElement('div');
 
     // create text node and append it to previous div node
-    newJoke = newJokeDiv.appendChild(document.createTextNode(`${apiData.joke}`));
+    // newJoke = newJokeDiv.appendChild(document.createTextNode(`${apiData.joke}`));
 
     // append div node in parent DOM node created in HTML
-    showJoke.appendChild(newJoke);
-}    
+    // showJoke.appendChild(newJoke);
+}
 
 function loadShape () {
     const acutalShape = document.querySelector('.shape') as HTMLImageElement | null;
     let randomShape: number = Math.floor(Math.random() * (6 - 1) + 1);
     //implementar switch para escoger forma
     switch (randomShape) {
-        case 1: 
+        case 1:
             if(acutalShape !== null){
                 acutalShape.src = './MEDIA/blue_blob.svg'
             }
             break;
-        case 2: 
+        case 2:
             if(acutalShape !== null){
                 acutalShape.src = './MEDIA/dark_yellow_blob.svg'
             }
             break;
-        case 3: 
+        case 3:
             if(acutalShape !== null){
                 acutalShape.src = './MEDIA/fuchsia_blob.svg'
             }
             break;
-        case 4: 
+        case 4:
             if(acutalShape !== null){
                 acutalShape.src = './MEDIA/green_blob.svg'
             }
             break;
-        case 5: 
+        case 5:
             if(acutalShape !== null){
                 acutalShape.src = './MEDIA/medium_gray_blob.svg'
             }
@@ -96,7 +102,7 @@ function chooseJoke() {
     } else {
         loadCNJoke();
     }
-} 
+}
 
 
 function trigger() {
@@ -104,7 +110,7 @@ function trigger() {
     chooseJoke();
     loadShape();
     deletePreviousJoke();
-} 
+}
 
 
 
@@ -112,13 +118,18 @@ function getScore(jokeScore: number) {
     let allowRating: boolean = true;
 
     if (allowRating) {
-        let currentJoke = document.querySelector('#joke') as HTMLDivElement;    
+        let currentJoke = document.querySelector('#joke') as HTMLDivElement;
         const scoredJoke: object = new Score (currentJoke.innerHTML, jokeScore , new Date);
         allScoredJokes.push(scoredJoke);
     }
 
     console.log(allScoredJokes);
 }
+
+
+// const triggerBtn: HTMLButtonElement | null = document.querySelector('jokeBtn')
+const triggerBtn: any = document.querySelector('#jokeBtn')
+triggerBtn.addEventListener('click', trigger)
 
 
 
