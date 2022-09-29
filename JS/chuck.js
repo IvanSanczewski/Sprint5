@@ -24,7 +24,6 @@ const API_URL_CN_JOKES = 'https://api.chucknorris.io/jokes/random';
 //     showJoke.appendChild(newJoke);
 // }
 function loadCNJoke() {
-    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const apiCNRequest = yield fetch(`${API_URL_CN_JOKES}`, {
             headers: {
@@ -33,8 +32,7 @@ function loadCNJoke() {
         });
         // parse data
         const apiCNData = yield apiCNRequest.json();
-        newJoke = (_a = document.querySelector('#joke')) === null || _a === void 0 ? void 0 : _a.insertAdjacentHTML('afterbegin', `<div>${apiCNData.value}</div>`);
-        console.log(newJoke, typeof newJoke);
-        console.log(apiCNData.value, typeof apiCNData.value);
+        jokeDiv = `<div>${apiCNData.value}</div>`;
+        newJoke = document.querySelector('#joke').innerHTML = jokeDiv;
     });
 }

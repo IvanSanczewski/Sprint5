@@ -23,15 +23,8 @@ class Score {
         this.date = date;
     }
 }
-// // delete DOM element in order to delete previous joke shown
-function deletePreviousJoke() {
-    // ??create an if statement in order to avoid console error of first try of deletion    
-    jokeDiv.removeChild(newJoke);
-    // list.removeChild(list.lastElementChild)
-}
 // request data from API asyncronously with a function
 function loadDadJoke() {
-    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const apiRequest = yield fetch(`${API_URL_DAD_JOKES}`, {
             headers: {
@@ -40,8 +33,8 @@ function loadDadJoke() {
         });
         // parse data
         const apiData = yield apiRequest.json();
-        jokeDiv = `<div style="color: black">${apiData.joke}</div>`;
-        newJoke = (_a = document.querySelector('#joke')) === null || _a === void 0 ? void 0 : _a.insertAdjacentHTML('afterbegin', jokeDiv);
+        jokeDiv = `<div>${apiData.joke}</div>`;
+        newJoke = document.querySelector('#joke').innerHTML = jokeDiv;
     });
 }
 function loadShape() {
@@ -88,10 +81,8 @@ function chooseJoke() {
     }
 }
 function trigger() {
-    // implementar condicional para que no intente borrar al principio -->> según contenido del div
     chooseJoke();
     loadShape();
-    deletePreviousJoke();
 }
 function getScore(jokeScore) {
     let allowRating = true;

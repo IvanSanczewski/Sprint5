@@ -24,15 +24,6 @@ class Score {
     }
 }
 
-
-// // delete DOM element in order to delete previous joke shown
-function deletePreviousJoke(): void {
-    // ??create an if statement in order to avoid console error of first try of deletion    
-    jokeDiv.removeChild(newJoke);
-    // list.removeChild(list.lastElementChild)
-}
-
-
 // request data from API asyncronously with a function
 async function loadDadJoke() {
 
@@ -43,17 +34,8 @@ async function loadDadJoke() {
     });
     // parse data
     const apiData = await apiRequest.json();
-    jokeDiv = `<div style="color: black">${apiData.joke}</div>`
-    newJoke = document.querySelector('#joke')?.insertAdjacentHTML('afterbegin', jokeDiv);
-
-    // create a new div node in DOM
-    // newJokeDiv = document.createElement('div');
-
-    // create text node and append it to previous div node
-    // newJoke = newJokeDiv.appendChild(document.createTextNode(`${apiData.joke}`));
-
-    // append div node in parent DOM node created in HTML
-    // showJoke.appendChild(newJoke);
+    jokeDiv = `<div>${apiData.joke}</div>`
+    // newJoke = document.querySelector('#joke').innerHTML = jokeDiv;
 }
 
 function loadShape () {
@@ -89,10 +71,6 @@ function loadShape () {
     }
 }
 
-
-
-
-
 // randomly generate a number (1 or 2) and call either loadDadJoke() or loadCNJoke() functions
 function chooseJoke() {
     let randomJoke: number = Math.floor(Math.random() * (3 - 1) + 1);
@@ -106,13 +84,9 @@ function chooseJoke() {
 
 
 function trigger() {
-    // implementar condicional para que no intente borrar al principio -->> según contenido del div
     chooseJoke();
     loadShape();
-    deletePreviousJoke();
 }
-
-
 
 function getScore(jokeScore: number) {
     let allowRating: boolean = true;
@@ -125,8 +99,6 @@ function getScore(jokeScore: number) {
 
     console.log(allScoredJokes);
 }
-
-
 // const triggerBtn: HTMLButtonElement | null = document.querySelector('jokeBtn')
 const triggerBtn: any = document.querySelector('#jokeBtn')
 triggerBtn.addEventListener('click', trigger)
