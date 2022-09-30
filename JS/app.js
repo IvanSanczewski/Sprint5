@@ -1,5 +1,4 @@
 "use strict";
-// import {Score} from './scores'
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -9,11 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+// import {Score} from './scores'
 const API_URL_DAD_JOKES = 'https://icanhazdadjoke.com/';
-// const showJoke:any = document.querySelector('#joke');
-// let newJokeDiv: any = "";
+let firstShapeGreen = true;
 let newJoke = "";
 let jokeDiv = "";
+let allowRating = true;
 let allScoredJokes = [];
 // create a class to instance every rated joke
 class Score {
@@ -32,8 +32,8 @@ function loadDadJoke() {
             },
         });
         // parse data
-        const apiData = yield apiRequest.json();
-        jokeDiv = `<div>${apiData.joke}</div>`;
+        const apiDadData = yield apiRequest.json();
+        jokeDiv = `<div>${apiDadData.joke}</div>`;
         newJoke = document.querySelector('#joke').innerHTML = jokeDiv;
     });
 }
@@ -82,14 +82,24 @@ function chooseJoke() {
 }
 function trigger() {
     chooseJoke();
-    loadShape();
+    allowRating = true;
+    console.log(firstShapeGreen);
+    if (firstShapeGreen) {
+        firstShapeGreen = false;
+    }
+    else {
+        loadShape();
+    }
 }
 function getScore(jokeScore) {
-    let allowRating = true;
     if (allowRating) {
         let currentJoke = document.querySelector('#joke');
         const scoredJoke = new Score(currentJoke.innerHTML, jokeScore, new Date);
         allScoredJokes.push(scoredJoke);
+        allowRating = false;
+    }
+    else {
+        console.log('Same joke and ve rated just once');
     }
     console.log(allScoredJokes);
 }

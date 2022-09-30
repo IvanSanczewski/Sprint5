@@ -1,15 +1,12 @@
 // import {Score} from './scores'
-
 const API_URL_DAD_JOKES:string = 'https://icanhazdadjoke.com/';
 
+let firstShapeGreen: boolean = true;
 
-// const showJoke:any = document.querySelector('#joke');
-
-// let newJokeDiv: any = "";
 let newJoke: any = "";
 let jokeDiv: any = "";
 
-
+let allowRating: boolean = true;
 let allScoredJokes: {}[] = [];
 
 // create a class to instance every rated joke
@@ -26,15 +23,14 @@ class Score {
 
 // request data from API asyncronously with a function
 async function loadDadJoke() {
-
     const apiRequest = await fetch(`${API_URL_DAD_JOKES}`, {
         headers: {
             Accept: "application/json",
         },
     });
     // parse data
-    const apiData = await apiRequest.json();
-    jokeDiv = `<div>${apiData.joke}</div>`
+    const apiDadData = await apiRequest.json();
+    jokeDiv = `<div>${apiDadData.joke}</div>`
     // newJoke = document.querySelector('#joke').innerHTML = jokeDiv;
 }
 
@@ -85,18 +81,25 @@ function chooseJoke() {
 
 function trigger() {
     chooseJoke();
-    loadShape();
+    allowRating = true;
+    console.log(firstShapeGreen);
+    
+    if (firstShapeGreen) {
+        firstShapeGreen = false;
+    } else {
+        loadShape();
+    }
 }
 
 function getScore(jokeScore: number) {
-    let allowRating: boolean = true;
-
     if (allowRating) {
         let currentJoke = document.querySelector('#joke') as HTMLDivElement;
         const scoredJoke: object = new Score (currentJoke.innerHTML, jokeScore , new Date);
         allScoredJokes.push(scoredJoke);
+        allowRating = false;
+    } else {
+        console.log('Same joke and ve rated just once');
     }
-
     console.log(allScoredJokes);
 }
 // const triggerBtn: HTMLButtonElement | null = document.querySelector('jokeBtn')
